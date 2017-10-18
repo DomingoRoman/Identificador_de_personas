@@ -16,9 +16,22 @@ To Pitch: 0, 75, 600
 
 b = Get mean: 0, 0, "Hertz"
 
-if b < 200
-	c = 5000
-elsif b > 200
+if b < 190
+	techoF = 5000
+elsif b > 190 and b < 360
+	techoF = 5500
+elsif b > 361
+	techoF = 6500
+endif
+
+
+select duda
+
+formant = To Formant (burg): 0, 5, techoF, 0.025, 50
+
+
+
+
 
 if b > 145 and b < 160
 	nombre$ = "Roberto"

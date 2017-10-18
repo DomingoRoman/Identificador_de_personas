@@ -1,17 +1,30 @@
-# b = f0
-# si la f0 es menor que 200
-# define techo formantes
-# techoF = 5000
-# si b > 200 y b < 350 
-# techoF = 5500
-# si b > 350
-# techoF = 6500
-# mide F1, F2, F3 y F4 y la distancia entre ellos
-#
-# a1 = F2-F1
-# a2 = F3-F2
-# a3 = F4-F3
-# a4 = F4-F2
-# a5 = F4-F1
-# a6 = F3-F1
-#
+duda = selected("Sound")
+
+To Pitch: 0, 75, 600
+b = Get mean: 0, 0, "Hertz"
+
+if b < 190
+	techoF = 5000
+elsif b > 190 and b < 360
+	techoF = 5500
+elsif b > 361
+	techoF = 6500
+endif
+
+
+select duda
+centro = Get total duration
+centro = centro/2
+
+formant = To Formant (burg): 0, 5, techoF, 0.025, 50
+
+f1 = Get value at time: 1, centro, "Hertz", "Linear"
+f2 = Get value at time: 2, centro, "Hertz", "Linear"
+f3 = Get value at time: 3, centro, "Hertz", "Linear"
+f4 = Get value at time: 4, centro, "Hertz", "Linear"
+a1 = f2-f1
+a2 = f3-f2
+a3 = f4-f3
+a4 = f4-f2
+a5 = f4-f1
+a6 = f3-f1

@@ -1,0 +1,64 @@
+audio$ = selected$("Sound")
+audio = selected("Sound")
+a = To Pitch: 0, 75, 600
+b = Get mean: 0, 0, "Hertz"
+
+# tabla = Create Table with column names: "table", 1, "nombre sexo f0 f1 f2 f3 f4 a1 a2 a3 a4 a5 a6"
+
+if b < 190
+	techoF = 5000
+	sexo$ = "masc"
+elsif b > 190 and b < 360
+	techoF = 5500
+	sexo$ = "feme"
+elsif b > 361
+	techoF = 6500
+endif
+
+
+select audio
+centro = Get total duration
+centro = centro/2
+
+select audio
+formant = To Formant (burg): 0, 5, techoF, 0.025, 50
+
+f1 = Get value at time: 1, centro, "Hertz", "Linear"
+f2 = Get value at time: 2, centro, "Hertz", "Linear"
+f3 = Get value at time: 3, centro, "Hertz", "Linear"
+f4 = Get value at time: 4, centro, "Hertz", "Linear"
+a1 = f2-f1
+a2 = f3-f2
+a3 = f4-f3
+a4 = f4-f2
+a5 = f4-f1
+a6 = f3-f1
+
+c = Read from file: "/Users/imac/Documents/2017/identificador/table.Table"
+
+d = Get number of rows
+
+d = d+1
+
+Append row
+
+Set string value: d, "nombre", audio$
+Set string value: d, "sexo", sexo$
+Set numeric value: d, "f0", b
+Set numeric value: d, "f1", f1
+Set numeric value: d, "f2", f3
+Set numeric value: d, "f3", f3
+Set numeric value: d, "f4", f4
+Set numeric value: d, "a1", a1
+Set numeric value: d, "a2", a2
+Set numeric value: d, "a3", a3
+Set numeric value: d, "a4", a4
+Set numeric value: d, "a5", a5
+Set numeric value: d, "a6", a6
+
+Save as text file: "/Users/imac/Documents/2017/identificador/table.Table"
+
+select a
+plus formant
+plus c
+Remove

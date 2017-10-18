@@ -13,6 +13,7 @@ elsif b > 190 and b < 360
 	sexo$ = "feme"
 elsif b > 361
 	techoF = 6500
+	sexo$ ="niño/niña"
 endif
 
 

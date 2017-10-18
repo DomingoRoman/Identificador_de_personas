@@ -1,0 +1,17 @@
+# b = f0
+# si la f0 es menor que 200
+# define techo formantes
+# techoF = 5000
+# si b > 200 y b < 350 
+# techoF = 5500
+# si b > 350
+# techoF = 6500
+# mide F1, F2, F3 y F4 y la distancia entre ellos
+#
+# a1 = F2-F1
+# a2 = F3-F2
+# a3 = F4-F3
+# a4 = F4-F2
+# a5 = F4-F1
+# a6 = F3-F1
+#
